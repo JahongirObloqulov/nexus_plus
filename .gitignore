@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/python,pycharm+all,pycharm,django,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm+all,pycharm,django,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/python,django,pycharm,pycharm+all,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,django,pycharm,pycharm+all,visualstudiocode
 
 ### Django ###
 *.log
@@ -453,4 +453,4 @@ pyrightconfig.json
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/python,pycharm+all,pycharm,django,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm,pycharm+all,visualstudiocode
