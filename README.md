@@ -1,14 +1,15 @@
-![Текст описания](https://files.realpython.com/media/Get-Started-With-Django_Watermarked.15a1e05597bc.jpg)
+![Текст описания](https://miro.medium.com/v2/resize:fit:1400/1*Bd5dYeGhFGhYuqJUpHjrNA.png)
+
 
 ## Assalom aleykum dasturni ishlatish uchun quyidagi qadamlarni ketma-ket amalga oshiring.
 
 ## 1-qadam.
 ```
-git clone https://github.com/JahongirObloqulov/Django_Polls_app.git
+git@github.com:JahongirObloqulov/nexus_plus.git
 ```
 ## 2-qadam.
 ```
-cd Django_Polls_app
+cd nexus_plus
 ```
 ## 3-qadam.
 ```
@@ -32,6 +33,6 @@ python manage.py runserver
 ```
 ## 8-qadam.
 ```
-http://127.0.0.1:8000/polls/
+http://127.0.0.1:8000
 ```
 
