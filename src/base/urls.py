@@ -23,4 +23,11 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('privacy_setting/', views.privacy_setting, name='privacy-setting'),
+    path('account_myads/', views.account_myads, name='account-myads'),
+    path('payments/', views.payments, name='payments'),
+    path('account_favourite_ads/', views.account_favourite_ads, name='account-favourite-ads'),
+    path('account_profile_setting/', views.account_profile_setting, name='account-profile-setting'),
+    path('offermessages/', views.offermessages, name='offermessages')
 ]

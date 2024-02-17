@@ -86,3 +86,34 @@ def login(request):
 
 def register(request):
     return render(request, 'register.html', {})
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html', {})
+
+
+def privacy_setting(request):
+    return render(request, 'privacy-setting.html', {})
+
+def account_profile_setting(request):
+    return render(request, 'account-profile-setting.html', {})
+
+
+def account_myads(request):
+    return render(request, 'account-myads.html', {})
+
+
+def payments(request):
+    return render(request, 'payments.html', {})
+
+
+def account_favourite_ads(request):
+    return render(request, 'account-favourite-ads.html', {})
+
+
+def privacy_setting(request):
+    return render(request, 'privacy-setting.html', {})
+
+
+def offermessages(request):
+    return render(request, 'offermessages.html', {})
