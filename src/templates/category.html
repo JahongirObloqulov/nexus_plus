@@ -19,12 +19,9 @@
                     <div class="select">
                       <select>
                         <option value="none">All Locations</option>
-                        <option value="none">New York</option>
-                        <option value="none">California</option>
-                        <option value="none">Washington</option>
-                        <option value="none">Birmingham</option>
-                        <option value="none">Chicago</option>
-                        <option value="none">Phoenix</option>
+                        {% for city in cities%}
+                          <option value="{{city.id}}">{{city.name}}</option>
+                        {% endfor %}
                       </select>
                     </div>
                   </div>
@@ -33,13 +30,9 @@
                     <div class="select">
                       <select>
                         <option value="none">Select Categories</option>
-                        <option value="none">Mobiles</option>
-                        <option value="none">Electronics</option>
-                        <option value="none">Training</option>
-                        <option value="none">Real Estate</option>
-                        <option value="none">Services</option>
-                        <option value="none">Training</option>
-                        <option value="none">Vehicles</option>
+                        {% for category in categories %}
+                          <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
                       </select>
                     </div>
                   </div>

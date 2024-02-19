@@ -1,15 +1,27 @@
 from django.shortcuts import render
-
+from product.models import City, Category
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, "index.html", {})
+    cities = City.objects.all()
+    categories = Category.objects.all()
+    context = {
+        "cities": cities,
+        "categories": categories
+    }
+    return render(request, "index.html", context)
 
 
 def category(request):
-    return render(request, "category.html", {})
+    cities = City.objects.all()
+    categories = Category.objects.all()
+    context = {
+        "cities": cities,
+        "categories": categories
+    }
+    return render(request, "category.html", context)
 
 
 def errors(request):
