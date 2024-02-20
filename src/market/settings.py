@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os.path
 from pathlib import Path
+from market.globals import DATABASE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,11 +88,11 @@ AUTH_USER_MODEL = 'user.User'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "market_db",
-        "USER": "postgres",
-        "PASSWORD": "123456",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": DATABASE['NAME'],
+        "USER": DATABASE['USER'],
+        "PASSWORD": DATABASE['PASSWORD'],
+        "HOST": DATABASE['HOST'],
+        "PORT": DATABASE['PORT'],
     }
 }
 

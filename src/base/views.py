@@ -1,5 +1,6 @@
+from django.db.models import F
 from django.shortcuts import render
-from product.models import City, Category
+from product.models import City, Category, Product, ProductImage
 
 # Create your views here.
 
@@ -7,9 +8,19 @@ from product.models import City, Category
 def index(request):
     cities = City.objects.all()
     categories = Category.objects.all()
+    products = Product.objects.all()
+    query = Product.objects.annotate(
+        fullname=F('user__firstname'),
+        category_name=F('category__name'),
+        product_image=F('productimage__image'),
+        city_name=F('city__name')
+    ).values('title', 'price', 'discount', 'fullname', 'description', 'category_name', 'product_image', 'city_name')
+
     context = {
         "cities": cities,
-        "categories": categories
+        "categories": categories,
+        "query": query,
+        "products": products
     }
     return render(request, "index.html", context)
 
@@ -17,9 +28,19 @@ def index(request):
 def category(request):
     cities = City.objects.all()
     categories = Category.objects.all()
+    products = Product.objects.all()
+    query = Product.objects.annotate(
+        fullname=F('user__firstname'),
+        category_name=F('category__name'),
+        product_image=F('productimage__image'),
+        city_name=F('city__name')
+    ).values('title', 'price', 'discount', 'fullname', 'description', 'category_name', 'product_image', 'city_name')
+
     context = {
         "cities": cities,
-        "categories": categories
+        "categories": categories,
+        "query": query,
+        "products": products
     }
     return render(request, "category.html", context)
 
