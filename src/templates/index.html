@@ -85,6 +85,11 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
                 <div class="featured-box">
                     <figure>
+                        <span class="price-save">
+                        {% if i.discount %}
+                          {{ i.discount }}% Save
+                        {% endif %}
+                        </span>
                         <div class="icon">
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>

@@ -1,6 +1,7 @@
 from django.db.models import F
 from django.shortcuts import render
 from product.models import City, Category, Product, ProductImage
+from django.db.models import Prefetch
 
 # Create your views here.
 
@@ -15,7 +16,12 @@ def index(request):
         product_image=F('productimage__image'),
         city_name=F('city__name')
     ).values('title', 'price', 'discount', 'fullname', 'description', 'category_name', 'product_image', 'city_name')
-
+    product = Product.objects.select_related('category', 'user', 'city').prefetch_related(
+        Prefetch('productimage_set', queryset=ProductImage.objects.all())
+    )
+    for i in product:
+        print(i.title, i.category.name, i.user.username, i.city.name)
+        print(i.productimage_set.all())
     context = {
         "cities": cities,
         "categories": categories,
