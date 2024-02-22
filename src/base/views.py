@@ -2,53 +2,21 @@ from django.db.models import F
 from django.shortcuts import render
 from product.models import City, Category, Product, ProductImage
 from django.db.models import Prefetch
-
+from base.search import Search
 # Create your views here.
 
 
 def index(request):
-    cities = City.objects.all()
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    query = Product.objects.annotate(
-        fullname=F('user__firstname'),
-        category_name=F('category__name'),
-        product_image=F('productimage__image'),
-        city_name=F('city__name')
-    ).values('title', 'price', 'discount', 'fullname', 'description', 'category_name', 'product_image', 'city_name')
-    product = Product.objects.select_related('category', 'user', 'city').prefetch_related(
-        Prefetch('productimage_set', queryset=ProductImage.objects.all())
-    )
-    for i in product:
-        print(i.title, i.category.name, i.user.username, i.city.name)
-        print(i.productimage_set.all())
-    context = {
-        "cities": cities,
-        "categories": categories,
-        "query": query,
-        "products": products
-    }
-    return render(request, "index.html", context)
+    if request.GET:
+        _search = Search(request, url='category.html')
+    else:
+        _search = Search(request, url='index.html')
+    return _search
 
 
 def category(request):
-    cities = City.objects.all()
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    query = Product.objects.annotate(
-        fullname=F('user__firstname'),
-        category_name=F('category__name'),
-        product_image=F('productimage__image'),
-        city_name=F('city__name')
-    ).values('title', 'price', 'discount', 'fullname', 'description', 'category_name', 'product_image', 'city_name')
-
-    context = {
-        "cities": cities,
-        "categories": categories,
-        "query": query,
-        "products": products
-    }
-    return render(request, "category.html", context)
+    category_search = Search(request, url='category.html')
+    return category_search
 
 
 def errors(request):
