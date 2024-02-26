@@ -81,35 +81,36 @@
     <div class="container">
         <h1 class="section-title">Latest Products</h1>
         <div class="row">
-            {% for i in query %}
+            {% for product in products %}
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
                 <div class="featured-box">
                     <figure>
-                        <span class="price-save">
-                        {% if i.discount %}
-                          {{ i.discount }}% Save
+                        {% if product.discount %}
+                            <span class="price-save">
+                          {{ product.discount }}% Save
+                            </span>
                         {% endif %}
-                        </span>
                         <div class="icon">
                             <span class="bg-green"><i class="lni-heart"></i></span>
                             <span><i class="lni-bookmark"></i></span>
                         </div>
-                        <a href="#"><img class="img-fluid" src="{{i.product_image}}" alt=""/></a>
+                        <a href="#"><img class="img-fluid" src="/{{ product.image }}" alt=""/></a>
                     </figure>
                     <div class="feature-content">
                         <div class="product">
-                            <a href="#">{{i.category_name}} ></a>
-                            <a href="#">Cameras</a>
+                            {% if product.parent_category %}
+                                <a href="#">{{ product.parent_category }} ></a>
+                            {% endif %}
+                            <a href="#">{{ product.category }}</a>
                         </div>
-                        <h4><a href="ads-details.html">{{i.title}}</a></h4>
+                        <h4><a href="ads-details.html">{{ product.title | slice:":10" }}...</a></h4>
                         <div class="meta-tag">
-                            <span><a href="#"><i class="lni-user"></i>{{i.fullname}}</a></span>
-                            <span><a href="#"><i class="lni-map-marker"></i>{{i.city_name}}</a></span>
-                            <span><a href="#"><i class="lni-tag"></i> Canon</a></span>
+                            <span><a href="#"><i class="lni-user"></i>{{ product.user }}</a></span>
+                            <span><a href="#"><i class="lni-map-marker"></i>{{ product.city }}</a></span>
                         </div>
-                        <p class="dsc">{{i.description}}</p>
+                        <p class="dsc">{{ product.description | slice:":100" }}</p>
                         <div class="listing-bottom">
-                            <h3 class="price float-left">${{i.price}}</h3>
+                            <h3 class="price float-left">${{ product.price }}</h3>
                             <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
                         </div>
                     </div>

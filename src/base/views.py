@@ -1,22 +1,71 @@
-from django.db.models import F
 from django.shortcuts import render
-from product.models import City, Category, Product, ProductImage
-from django.db.models import Prefetch
+from django.db.models import F, Prefetch, Subquery, OuterRef
+from product.models import City, Product, Category, ProductImage
+from user.models import User
 from base.search import Search
 # Create your views here.
 
 
 def index(request):
-    if request.GET:
-        _search = Search(request, url='category.html')
-    else:
-        _search = Search(request, url='index.html')
-    return _search
+    cities = City.objects.all()
+    categories = Category.objects.all()
+    products = Product.objects.select_related('category', 'user', 'city').prefetch_related(
+        Prefetch('productimage_set', queryset=ProductImage.objects.all())
+    ).annotate(
+        parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
+    )
+    _format_products = []
+    for i in products:
+        _format_products.append({
+            'id': i.id,
+            'title': i.title,
+            'description': i.description,
+            'price': i.price,
+            'user': i.user.username,
+            'city': i.city.name,
+            'category': i.category.name,
+            'parent_category': i.parent_category_name,
+            'discount': i.discount,
+            'image': i.productimage_set.all()[0].image
+        })
+
+    context = {
+        "cities": cities,
+        "categories": categories,
+        "products": _format_products
+    }
+    return render(request, 'index.html', context)
 
 
 def category(request):
-    category_search = Search(request, url='category.html')
-    return category_search
+    cities = City.objects.all()
+    categories = Category.objects.all()
+    products = Product.objects.select_related('category', 'user', 'city').prefetch_related(
+        Prefetch('productimage_set', queryset=ProductImage.objects.all())
+    ).annotate(
+        parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
+    )
+    _format_products = []
+    for i in products:
+        _format_products.append({
+            'id': i.id,
+            'title': i.title,
+            'description': i.description,
+            'price': i.price,
+            'user': i.user.username,
+            'city': i.city.name,
+            'category': i.category.name,
+            'parent_category': i.parent_category_name,
+            'discount': i.discount,
+            'image': i.productimage_set.all()[0].image
+        })
+
+    context = {
+        "cities": cities,
+        "categories": categories,
+        "products": _format_products
+    }
+    return render(request, 'category.html', context)
 
 
 def errors(request):
