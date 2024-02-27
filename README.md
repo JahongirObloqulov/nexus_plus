@@ -5,7 +5,7 @@
 
 ## 1-qadam.
 ```
-git@github.com:JahongirObloqulov/nexus_plus.git
+git clone https://github.com/JahongirObloqulov/nexus_plus.git
 ```
 ## 2-qadam.
 ```

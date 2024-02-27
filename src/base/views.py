@@ -66,25 +66,25 @@ def category(request):
         )
     elif city and category and custom_word:
         products = Product.objects.filter(city_id=city).filter(category_id=category).filter(
-            title__contains=custom_word).select_related('category', 'city', 'user').prefetch_related(
+            title__icontains=custom_word).select_related('category', 'city', 'user').prefetch_related(
             Prefetch('productimage_set', queryset=ProductImage.objects.all())
         ).annotate(
-            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).value('name')))
+            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name')))
     elif city and custom_word:
-        products = Product.objects.filter(city_id=city).filter(title__contains=custom_word).select_related('category',
+        products = Product.objects.filter(city_id=city).filter(title__icontains=custom_word).select_related('category',
                                                                                                            'city',
                                                                                                            'user').prefetch_related(
             Prefetch('productimage_set', queryset=ProductImage.objects.all())
         ).annotate(
-            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).value('name')))
+            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name')))
     elif category and custom_word:
-        products = Product.objects.filter(category_id=category).filter(title__contains=custom_word).select_related(
+        products = Product.objects.filter(category_id=category).filter(title__icontains=custom_word).select_related(
             'category',
             'city',
             'user').prefetch_related(
             Prefetch('productimage_set', queryset=ProductImage.objects.all())
         ).annotate(
-            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).value('name')))
+            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name')))
     elif category:
         products = Product.objects.filter(category_id=category).select_related('category', 'user',
                                                                                'city').prefetch_related(
@@ -93,12 +93,12 @@ def category(request):
             parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
         )
     elif custom_word:
-        products = Product.objects.filter(title__contains=custom_word).select_related('category',
+        products = Product.objects.filter(title__icontains=custom_word).select_related('category',
                                                                                       'city',
                                                                                       'user').prefetch_related(
             Prefetch('productimage_set', queryset=ProductImage.objects.all())
         ).annotate(
-            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).value('name')))
+            parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name')))
     else:
         products = Product.objects.select_related('category', 'user', 'city').prefetch_related(
             Prefetch('productimage_set', queryset=ProductImage.objects.all())
@@ -127,6 +127,7 @@ def category(request):
         "products": _format_products,
         "selected_ctg": category,
         "selected_city": city,
+        "custom_word": custom_word,
 
     }
     return render(request, 'category.html', context)
