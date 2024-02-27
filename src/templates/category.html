@@ -9,7 +9,7 @@
         <div class="contents-ctg">
           <div class="search-bar">
             <div class="search-inner">
-              <form class="search-form">
+              <form class="search-form" method="get" action="">
                 <div class="form-group inputwithicon">
                   <i class="lni-tag"></i>
                   <input type="text" name="customword" class="form-control" placeholder="Enter Product Keyword" />
@@ -17,10 +17,14 @@
                 <div class="form-group inputwithicon">
                   <i class="lni-target"></i>
                   <div class="select">
-                    <select>
-                      <option value="none">All Locations</option>
+                    <select name="city">
+                      <option value="">All Locations</option>
                       {% for city in cities%}
-                      <option value="{{city.id}}">{{city.name}}</option>
+                          {% if city.id == selected_city %}
+                            <option value="{{city.id}}" selected>{{city.name}}</option>
+                          {% else %}
+                            <option value="{{city.id}}">{{city.name}}</option>
+                          {% endif %}
                       {% endfor %}
                     </select>
                   </div>
@@ -28,15 +32,19 @@
                 <div class="form-group inputwithicon">
                   <i class="lni-menu"></i>
                   <div class="select">
-                    <select>
-                      <option value="none">Select Categories</option>
+                    <select name="category">
+                      <option value="">Select Categories</option>
                       {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.name }}</option>
+                          {% if category.id == selected_ctg %}
+                            <option value="{{ category.id }}" selected>{{ category.name }}</option>
+                          {% else %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                          {% endif %}
                       {% endfor %}
                     </select>
                   </div>
                 </div>
-                <button class="btn btn-common" type="button"><i class="lni-search"></i> Search Now</button>
+                <button class="btn btn-common" type="submit"><i class="lni-search"></i> Search Now</button>
               </form>
             </div>
           </div>
