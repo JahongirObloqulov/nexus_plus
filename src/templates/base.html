@@ -125,30 +125,22 @@
 
         <ul class="mobile-menu">
             <li>
-                <a href="#">Home</a>
-                <ul class="dropdown">
-                    <li>
-                        <a href="index-2.html">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="index-3.html">Home 2</a>
-                    </li>
-                </ul>
+                <a href="{% url 'index' %}">Home</a>
             </li>
             <li>
-                <a class="active" href="category.html">Categories</a>
+                <a class="active" href="{% url 'category' %}">Categories</a>
             </li>
             <li>
                 <a href="#">Listings</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="adlistinggrid.html">Ad Grid</a>
+                        <a href="{% url 'adlistinggrid' %}">Ad Grid</a>
                     </li>
                     <li>
-                        <a href="adlistinglist.html">Ad Listing</a>
+                        <a href="{% url 'adlistinglist' %}">Ad Listing</a>
                     </li>
                     <li>
-                        <a href="ads-details.html">Listing Detail</a>
+                        <a href="{% url 'ads-details' %}">Listing Detail</a>
                     </li>
                 </ul>
             </li>
@@ -156,28 +148,28 @@
                 <a href="#">Pages</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="about.html">About Us</a>
+                        <a href="{% url 'about' %}">About Us</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="{% url 'services' %}">Services</a>
                     </li>
                     <li>
-                        <a href="ads-details.html">Ads Details</a>
+                        <a href="{% url 'ads-details' %}">Ads Details</a>
                     </li>
                     <li>
-                        <a href="post-ads.html">Ads Post</a>
+                        <a href="{% url 'post-ads' %}">Ads Post</a>
                     </li>
                     <li>
-                        <a href="pricing.html">Packages</a>
+                        <a href="{% url 'pricing' %}">Packages</a>
                     </li>
                     <li>
-                        <a href="testimonial.html">Testimonial</a>
+                        <a href="{% url 'testimonial' %}">Testimonial</a>
                     </li>
                     <li>
-                        <a href="faq.html">FAQ</a>
+                        <a href="{% url 'faq' %}">FAQ</a>
                     </li>
                     <li>
-                        <a href="404.html">404</a>
+                        <a href="{% url '404' %}">404</a>
                     </li>
                 </ul>
             </li>
@@ -185,21 +177,21 @@
                 <a href="#">Blog</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="blog.html">Blog - Right Sidebar</a>
+                        <a href="{% url 'blog' %}">Blog - Right Sidebar</a>
                     </li>
                     <li>
-                        <a href="blog-left-sidebar.html">Blog - Left Sidebar</a>
+                        <a href="{% url 'blog-left-sidebar' %}">Blog - Left Sidebar</a>
                     </li>
                     <li>
-                        <a href="blog-grid-full-width.html">Blog full width</a>
+                        <a href="{% url 'blog-grid-full-width' %}">Blog full width</a>
                     </li>
                     <li>
-                        <a href="single-post.html">Blog Details</a>
+                        <a href="{% url 'single-post' %}">Blog Details</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="contact.html">Contact Us</a>
+                <a href="{% url 'contact' %}">Contact Us</a>
             </li>
         </ul>
     </nav>
