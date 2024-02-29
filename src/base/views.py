@@ -216,7 +216,10 @@ def adlistinglist(request):
 
 
 def adsdetails(request):
-    return render(request, 'ads-details.html', {})
+    context = {
+
+    }
+    return render(request, 'ads-details.html', context)
 
 
 def about(request):
