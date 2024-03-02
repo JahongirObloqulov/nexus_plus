@@ -25,6 +25,8 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('products/', include('product.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('user/', include('user.urls')),
+    path('blog/', include('blog.urls')),
 ]
 
 if settings.DEBUG:

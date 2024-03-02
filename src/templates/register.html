@@ -25,29 +25,32 @@
         <div class="col-lg-5 col-md-12 col-xs-12">
           <div class="register-form login-area">
             <h3>Register</h3>
-            <form class="login-form">
+            <form class="login-form" action="" method="post">
+              {% csrf_token %}
               <div class="form-group">
                 <div class="input-icon">
                   <i class="lni-user"></i>
-                  <input type="text" id="Name" class="form-control" name="email" placeholder="Username" />
+                  {{ form.username }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-icon">
                   <i class="lni-envelope"></i>
-                  <input type="text" id="sender-email" class="form-control" name="email" placeholder="Email Address" />
+                  {{ form.email }}
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-icon">
                   <i class="lni-lock"></i>
-                  <input type="password" class="form-control" placeholder="Password" />
+                  {{ form.password1 }}
+<!--                  <input type="password" class="form-control" placeholder="Password" />-->
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-icon">
                   <i class="lni-lock"></i>
-                  <input type="password" class="form-control" placeholder="Retype Password" />
+                  {{ form.password2 }}
+<!--                  <input type="password" class="form-control" placeholder="Retype Password" />-->
                 </div>
               </div>
               <div class="form-group mb-3">
@@ -57,7 +60,7 @@
                 </div>
               </div>
               <div class="text-center">
-                <button class="btn btn-common log-btn">Register</button>
+                <button class="btn btn-common log-btn" type="submit">Register</button>
               </div>
             </form>
           </div>

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'user',
     'product',
     'debug_toolbar',
-    'django_summernote'
+    'django_summernote',
+    'blog'
 ]
 
 SUMMERNOTE_THEME = 'bs5'

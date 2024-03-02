@@ -276,16 +276,10 @@ def faq(request):
     return render(request, 'faq.html', {})
 
 
-def blog(request):
-    return render(request, 'blog.html', {})
 
 
 def blog_left_sidebar(request):
     return render(request, 'blog-left-sidebar.html', {})
-
-
-def blog_grid_full_width(request):
-    return render(request, 'blog-grid-full-width.html', {})
 
 
 def single_post(request):
