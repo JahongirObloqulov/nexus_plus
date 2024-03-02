@@ -32,14 +32,15 @@ class Product(models.Model):
         (4, "Inactive")
     )
     title = models.CharField(max_length=200, null=False, blank=False)
-    description = models.TextField(null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
     price = models.FloatField(null=False, blank=False)
     discount = models.IntegerField()
     condition = models.SmallIntegerField(choices=CHOICES)
-    status = models.SmallIntegerField(choices=STATUS_CHOICES)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    status = models.SmallIntegerField(choices=STATUS_CHOICES, default=1)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

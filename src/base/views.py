@@ -215,8 +215,38 @@ def adlistinglist(request):
     return render(request, 'adlistinglist.html', {})
 
 
-def adsdetails(request):
+def adsdetails(request, product_id):
+    one_products = Product.objects.filter(id=product_id).select_related('category', 'user', 'city').prefetch_related(
+        Prefetch('productimage_set', queryset=ProductImage.objects.all())
+    ).annotate(
+        parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
+    )
+
+    one_format_product = []
+    for i in one_products:
+        images = [image.image for image in i.productimage_set.all()]
+        for j in images:
+            print(j)
+        one_format_product.append({
+            'id': i.id,
+            'title': i.title,
+            'description': i.description,
+            'price': i.price,
+            'user': i.user.username,
+            'phone_number': i.user.phone_number,
+            'user_image': i.user.photo,
+            'status': i.status,
+            'created_date': i.created_date,
+            'city': i.city.name,
+            'category': i.category.name,
+            'parent_category': i.parent_category_name,
+            'discount': i.discount,
+            'image': images
+        })
+
+
     context = {
+        "selected_products": one_format_product
 
     }
     return render(request, 'ads-details.html', context)
@@ -231,7 +261,7 @@ def services(request):
 
 
 def post_ads(request):
-    return render(request, 'post-ads.html', {})
+    return render(request, 'create.html', {})
 
 
 def pricing(request):

@@ -121,7 +121,7 @@
                                 <p class="dsc">{{ product.description | slice:":100" }}</p>
                                 <div class="listing-bottom">
                                     <h3 class="price float-left">${{ product.price }}</h3>
-                                    <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
+                                    <a href="{% url 'adsdetails' product_id=product.id %}" class="btn btn-common float-right">View Details</a>
                                 </div>
                             </div>
                         </div>
