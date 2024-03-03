@@ -27,11 +27,12 @@ pip install -r requirements.txt
 ```
 cd src
 ```
-## 7-qadam.
+## 7-qadam.![Текст описания](src/static/img/win.jpeg)
+## 9-qadam.
 ```
 python manage.py runserver
 ```
-## 8-qadam.
+## 10-qadam.
 ```
 http://127.0.0.1:8000
 ```
