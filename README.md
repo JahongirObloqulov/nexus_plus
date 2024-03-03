@@ -27,8 +27,10 @@ pip install -r requirements.txt
 ```
 cd src
 ```
-## 7-qadam.
+## 7-qadam. Windows tizimi foydalanuvchilari quyidagi kombinatsiyani bosadi.
 ![Текст описания](src/static/img/win.jpeg)
+## 8-qadam. Linux tizimi foydalanuvchilari quyidagi kombinatsiyani bosadi.
+### Ctrl+Alt+T
 ## 9-qadam.
 ```
 python manage.py runserver
