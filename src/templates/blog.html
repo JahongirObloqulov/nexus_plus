@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load split %}
 {% block content %}
   <div class="page-header" style="background: url({% static 'img/banner1.jpg' %});">
     <div class="container">
@@ -26,7 +27,7 @@
           {% for post in posts %}
           <div class="blog-post">
             <div class="post-thumb">
-              <a href="#"><img class="img-fluid" src="/{{ post.image }}" alt="" /></a>
+              <a href="{% url 'blog-detail' pk=post.id %}"><img class="img-fluid" src="/{{ post.image }}" alt="" /></a>
               <div class="hover-wrap"></div>
             </div>
 
@@ -36,11 +37,11 @@
                 <span class="meta-part"><a href="#"><i class="lni-alarm-clock"></i> {{post.post_date}}</a></span>
                 <span class="meta-part"><a href="#"><i class="lni-comments-alt"></i> {{ post.comment_count }} Comments</a></span>
               </div>
-              <h2 class="post-title"><a href="single-post.html">{{ post.title }}</a></h2>
+              <h2 class="post-title"><a href="{% url 'blog-detail' pk=post.id %}">{{ post.title }}</a></h2>
               <div class="entry-summary">
-                <p>{{ post.content | slice:"200" }}</p>
+                <p>{{ post.content |new_split:200}}</p>
               </div>
-              <a href="single-post.html" class="btn btn-common">Read More</a>
+              <a href="{% url 'blog-detail' pk=post.id %}" class="btn btn-common">Read More</a>
             </div>
           </div>
           {% endfor %}

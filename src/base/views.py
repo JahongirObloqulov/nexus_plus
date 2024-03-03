@@ -215,8 +215,8 @@ def adlistinglist(request):
     return render(request, 'adlistinglist.html', {})
 
 
-def adsdetails(request, product_id):
-    one_products = Product.objects.filter(id=product_id).select_related('category', 'user', 'city').prefetch_related(
+def adsdetails(request, pk):
+    one_products = Product.objects.filter(id=pk).select_related('category', 'user', 'city').prefetch_related(
         Prefetch('productimage_set', queryset=ProductImage.objects.all())
     ).annotate(
         parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
@@ -225,6 +225,7 @@ def adsdetails(request, product_id):
     one_format_product = []
     for i in one_products:
         images = [image.image for image in i.productimage_set.all()]
+        condition_choice = dict(Product.CHOICES).get(i.condition)
         for j in images:
             print(j)
         one_format_product.append({
@@ -241,14 +242,37 @@ def adsdetails(request, product_id):
             'category': i.category.name,
             'parent_category': i.parent_category_name,
             'discount': i.discount,
-            'image': images
+            'image': images,
+            'condition': condition_choice
         })
 
+    products = Product.objects.select_related('category', 'user', 'city').prefetch_related(
+        Prefetch('productimage_set', queryset=ProductImage.objects.all())
+    ).annotate(
+        parent_category_name=Subquery(Category.objects.filter(id=OuterRef('category__parent_id')).values('name'))
+    )
+
+    _format_products = []
+    for i in products:
+        _format_products.append({
+            'id': i.id,
+            'title': i.title,
+            'description': i.description,
+            'price': i.price,
+            'user': i.user.username,
+            'city': i.city.name,
+            'category': i.category.name,
+            'parent_category': i.parent_category_name,
+            'discount': i.discount,
+            'image': i.productimage_set.all()[0].image
+        })
 
     context = {
-        "selected_products": one_format_product
+        "selected_products": one_format_product,
+        "products": _format_products
 
     }
+    print(context['selected_products'])
     return render(request, 'ads-details.html', context)
 
 
@@ -276,14 +300,8 @@ def faq(request):
     return render(request, 'faq.html', {})
 
 
-
-
 def blog_left_sidebar(request):
     return render(request, 'blog-left-sidebar.html', {})
-
-
-def single_post(request):
-    return render(request, 'single-post.html', {})
 
 
 def contact(request):

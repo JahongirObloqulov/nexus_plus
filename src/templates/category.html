@@ -144,7 +144,7 @@
                         {% endif %}
                         <a href="#">{{ product.category }}</a>
                       </div>
-                      <h4><a href="ads-details.html">{{product.title | slice:":15" }}</a></h4>
+                      <h4><a href="{% url 'adsdetails' pk=product.id %}">{{product.title | slice:":15" }}</a></h4>
                       <div class="meta-tag">
                         <span><a href="#"><i class="lni-user"></i> {{ product.user }}</a></span>
                         <span><a href="#"><i class="lni-map-marker"></i>{{ product.city }}</a></span>
@@ -152,7 +152,7 @@
                       <p class="dsc">{{ product.description | slice:":100" }}</p>
                       <div class="listing-bottom">
                         <h3 class="price float-left">${{ product.price }}</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
+                        <a href="{% url 'adsdetails' pk=product.id %}" class="btn btn-common float-right">View Details</a>
                       </div>
                     </div>
                   </div>
@@ -184,7 +184,7 @@
                         {% endif %}
                         <a href="#">{{ product.category }}</a>
                       </div>
-                      <h4><a href="ads-details.html">{{product.title | slice:":15" }}</a></h4>
+                      <h4><a href="{% url 'adsdetails' pk=product.id %}">{{product.title | slice:":15" }}</a></h4>
                       <div class="meta-tag">
                         <span><a href="#"><i class="lni-user"></i> {{ product.user }}</a></span>
                         <span><a href="#"><i class="lni-map-marker"></i>{{ product.city }}</a></span>
@@ -192,7 +192,7 @@
                       <p class="dsc">{{ product.description | slice:":100" }}</p>
                       <div class="listing-bottom">
                         <h3 class="price float-left">${{ product.price }}</h3>
-                        <a href="ads-details.html" class="btn btn-common float-right">View Details</a>
+                        <a href="{% url 'adsdetails' pk=product.id %}" class="btn btn-common float-right">View Details</a>
                       </div>
                     </div>
                   </div>

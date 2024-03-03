@@ -113,7 +113,7 @@
                                     {% endif %}
                                     <a href="#">{{ product.category }}</a>
                                 </div>
-                                <h4><a href="ads-details.html">{{ product.title | slice:":15" }} ...</a></h4>
+                                <h4><a href="{% url 'adsdetails' pk=product.id %}">{{ product.title | slice:":15" }} ...</a></h4>
                                 <div class="meta-tag">
                                     <span><a href="#"><i class="lni-user"></i>{{ product.user }}</a></span>
                                     <span><a href="#"><i class="lni-map-marker"></i>{{ product.city }}</a></span>
@@ -121,7 +121,7 @@
                                 <p class="dsc">{{ product.description | slice:":100" }}</p>
                                 <div class="listing-bottom">
                                     <h3 class="price float-left">${{ product.price }}</h3>
-                                    <a href="{% url 'adsdetails' product_id=product.id %}" class="btn btn-common float-right">View Details</a>
+                                    <a href="{% url 'adsdetails' pk=product.id %}" class="btn btn-common float-right">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                                     <img class="img-fluid" src="{{product.image}}" alt=""/>
                                     <div class="overlay">
                                         <div>
-                                            <a class="btn btn-common" href="ads-details.html">View Details</a>
+                                            <a class="btn btn-common" href="{% url 'adsdetails' pk=product.id %}">View Details</a>
                                         </div>
                                     </div>
                                     <div class="btn-product bg-sale">
@@ -153,7 +153,7 @@
                                     <span class="price">${{ product.price }}</span>
                                 </div>
                                 <div class="product-content">
-                                    <h3 class="product-title"><a href="ads-details.html">{{ product.title | slice:":15" }}</a></h3>
+                                    <h3 class="product-title"><a href="{% url 'adsdetails' pk=product.id %}">{{ product.title | slice:":15" }}</a></h3>
                                     {% if product.parent_category %}
                                         <span>{{ product.parent_category }} /</span>
                                     {% endif %}

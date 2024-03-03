@@ -25,66 +25,28 @@
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="ads-details-wrapper">
                     <div id="owl-demo" class="owl-carousel owl-theme">
-                        {% for img in selected_products.image %}
+                        {% for img in selected_products.0.image %}
                         <div class="item">
                             <div class="product-img">
                                 <img class="img-fluid" src="/{{ img }}" alt=""/>
                             </div>
-                            <span class="price">$1,550</span>
+                            <span class="price">${{ selected_products.0.price }}</span>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="details-box">
                     <div class="ads-details-info">
-                        <h2>{{ selected_products.title }}</h2>
+                        <h2>{{ selected_products.0.title }}</h2>
                         <div class="details-meta">
-                            <span><a href="#"><i class="lni-alarm-clock"></i> {{ selected_products.created_date }}</a></span>
-                            <span><a href="#"><i class="lni-map-marker"></i> {{ selected_products.city }}</a></span>
+                            <span><a href="#"><i class="lni-alarm-clock"></i> {{ selected_products.0.created_date }}</a></span>
+                            <span><a href="#"><i class="lni-map-marker"></i> {{ selected_products.0.city }}</a></span>
                             <span><a href="#"><i class="lni-eye"></i> 299 View</a></span>
                         </div>
-                        {% for image in selected_products.image %}
-                        <img src="{{ image }}" alt="Product Image">
-                        {% endfor %}
 
-                        <p class="mb-4">Up for sale we have a vintage Raleigh Sport Men’s Bicycle. This bike does have
-                            some general wear and surface corrosion on some of the parts but is overall in good shape.
-                            It has been checked out and does work. Brakes and gears work. Seat is fully intact. Frame
-                            and fenders are in nice shape with minimal wear. A few minor dents in the fenders but most
-                            of the paint is intact. This vintage bicycle is very well preserved and can be used the way
-                            it is or fully restored if you would like it to look newer.</p>
+
                         <h4 class="title-small mb-3">Specification:</h4>
-                        <ul class="list-specification">
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 256GB PCIe flash storage
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 2.7 GHz dual-core Intel Core i5
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> Turbo Boost up to 3.1GHz
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> Intel Iris Graphics 6100
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 8GB memory
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 10 hour battery life
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 13.3" Retina Display
-                            </li>
-                            <li>
-                                <i class="lni-check-mark-circle"></i> 1 Year international warranty
-                            </li>
-                        </ul>
-                        <p class="mb-4">Up for sale we have a vintage Raleigh Sport Men’s Bicycle. This bike does have
-                            some general wear and surface corrosion on some of the parts but is overall in good shape.
-                            It has been checked out and does work. Brakes and gears work. Seat is fully intact. Frame
-                            and fenders are in nice shape with minimal wear. A few minor dents in the fenders but most
-                            of the paint is intact.</p>
+                        <p class="mb-4">{{ selected_products.0.description }}</p>
                     </div>
                     <div class="tag-bottom">
                         <div class="float-left">
@@ -92,12 +54,12 @@
                                 <li>
                                     <p>
                                         <strong><i class="lni-folder"></i> Categories:</strong> <a
-                                            href="#">Electronics</a>
+                                            href="#">{{selected_products.0.category}}</a>
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        <strong><i class="lni-archive"></i> Condition:</strong> New
+                                        <strong><i class="lni-archive"></i> Condition:</strong>{{selected_products.0.condition}}
                                     </p>
                                 </li>
                                 <li>
@@ -148,81 +110,22 @@
                     <div class="widget">
                         <h4 class="widget-title">More Ads From Seller</h4>
                         <ul class="posts-list">
+                            {% for product in products %}
                             <li>
                                 <div class="widget-thumb">
-                                    <a href="#"><img src="{% static 'img/details/img1.jpg' %}" alt=""/></a>
+                                    <a href="#"><img src="/{{ product.image }}" alt=""/></a>
                                 </div>
                                 <div class="widget-content">
-                                    <h4><a href="#">Little Harbor Yacht 38</a></h4>
+                                    <h4><a href="{% url 'adsdetails' pk=product.id %}">{{ product.title }}</a></h4>
                                     <div class="meta-tag">
-                                        <span><a href="#"><i class="lni-user"></i> Smith</a></span>
-                                        <span><a href="#"><i class="lni-map-marker"></i> New Your</a></span>
-                                        <span><a href="#"><i class="lni-tag"></i> Radio</a></span>
-                                    </div>
-                                    <h4 class="price">$480.00</h4>
+                                        <span><a href="#"><i class="lni-user"></i> {{ product.user }}</a></span>
+                                        <span><a href="#"><i class="lni-map-marker"></i> {{ product.city }}</a></span>
+                                        </div>
+                                    <h4 class="price">${{ product.price }}</h4>
                                 </div>
                                 <div class="clearfix"></div>
                             </li>
-                            <li>
-                                <div class="widget-thumb">
-                                    <a href="#"><img src="{% static 'img/details/img2.jpg' %}" alt=""/></a>
-                                </div>
-                                <div class="widget-content">
-                                    <h4><a href="#">Little Harbor Yacht 38</a></h4>
-                                    <div class="meta-tag">
-                                        <span><a href="#"><i class="lni-user"></i> Smith</a></span>
-                                        <span><a href="#"><i class="lni-map-marker"></i> New Your</a></span>
-                                        <span><a href="#"><i class="lni-tag"></i> Radio</a></span>
-                                    </div>
-                                    <h4 class="price">$480.00</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <div class="widget-thumb">
-                                    <a href="#"><img src="{% static 'img/details/img3.jpg' %}" alt=""/></a>
-                                </div>
-                                <div class="widget-content">
-                                    <h4><a href="#">Little Harbor Yacht 38</a></h4>
-                                    <div class="meta-tag">
-                                        <span><a href="#"><i class="lni-user"></i> Smith</a></span>
-                                        <span><a href="#"><i class="lni-map-marker"></i> New Your</a></span>
-                                        <span><a href="#"><i class="lni-tag"></i> Radio</a></span>
-                                    </div>
-                                    <h4 class="price">$480.00</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <div class="widget-thumb">
-                                    <a href="#"><img src="{% static 'img/details/img4.jpg' %}" alt=""/></a>
-                                </div>
-                                <div class="widget-content">
-                                    <h4><a href="#">Little Harbor Yacht 38</a></h4>
-                                    <div class="meta-tag">
-                                        <span><a href="#"><i class="lni-user"></i> Smith</a></span>
-                                        <span><a href="#"><i class="lni-map-marker"></i> New Your</a></span>
-                                        <span><a href="#"><i class="lni-tag"></i> Radio</a></span>
-                                    </div>
-                                    <h4 class="price">$480.00</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <div class="widget-thumb">
-                                    <a href="#"><img src="{% static 'img/details/img5.jpg' %}" alt=""/></a>
-                                </div>
-                                <div class="widget-content">
-                                    <h4><a href="#">Little Harbor Yacht 38</a></h4>
-                                    <div class="meta-tag">
-                                        <span><a href="#"><i class="lni-user"></i> Smith</a></span>
-                                        <span><a href="#"><i class="lni-map-marker"></i> New Your</a></span>
-                                        <span><a href="#"><i class="lni-tag"></i> Radio</a></span>
-                                    </div>
-                                    <h4 class="price">$480.00</h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </aside>
